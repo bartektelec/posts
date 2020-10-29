@@ -1,18 +1,14 @@
 ---
 title: 'TypeScript Builder Pattern'
 excerpt: 'Complex class entities may get difficult to produce using only constructor arguments, providing more options for customization makes the constructor cluttered and difficult to read...'
-coverImage: '/assets/blog/hello-world/cover.jpg'
+coverImage: '/assets/builder.jpg'
 date: 'Tue 20 Oct, 2020'
 
 ogImage:
-  url: '/assets/blog/hello-world/cover.jpg'
+  url: '/assets/builder.jpg'
 ---
 
-# Builder simplified
-
 _typescript, design patterns, creational_
-
-> Tue 20 Oct, 2020
 
 ## Intro
 
