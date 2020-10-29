@@ -1,6 +1,17 @@
+---
+title: 'TypeScript Builder Pattern'
+excerpt: 'Complex class entities may get difficult to produce using only constructor arguments, providing more options for customization makes the constructor cluttered and difficult to read...'
+coverImage: '/assets/blog/hello-world/cover.jpg'
+date: 'Tue 20 Oct, 2020'
+
+ogImage:
+  url: '/assets/blog/hello-world/cover.jpg'
+---
+
 # Builder simplified
 
 _typescript, design patterns, creational_
+
 > Tue 20 Oct, 2020
 
 ## Intro
@@ -13,20 +24,24 @@ Complex class entities may get difficult to produce using only constructor argum
 
 ```ts
 // Creating a red Enzo Ferrari with v12 6L engine, 2 doors, 1480kg weight and 651hp
-const sportsCar = new Car('Ferrari', 'Enzo', 'red', 'v12', 6000, 651, 2, 1480 );
+const sportsCar = new Car('Ferrari', 'Enzo', 'red', 'v12', 6000, 651, 2, 1480);
 // or
-const sportsCar = new Car({brand: 'Ferrari',
-                            model:'Enzo',
-                            color:'red',
-                            engine:{type: 'v12', volume: 6000, hp: 651},
-                            doors: 2,
-                            weight: 1480 });
+const sportsCar = new Car({
+  brand: 'Ferrari',
+  model: 'Enzo',
+  color: 'red',
+  engine: { type: 'v12', volume: 6000, hp: 651 },
+  doors: 2,
+  weight: 1480,
+});
 // or
-const sportsCar = new Car({brand: 'Ferrari',
-                            model:'Enzo',
-                            engine:{type: 'v12', volume: 6000, hp: 651},
-                            doors: 2,
-                            weight: 1480 });
+const sportsCar = new Car({
+  brand: 'Ferrari',
+  model: 'Enzo',
+  engine: { type: 'v12', volume: 6000, hp: 651 },
+  doors: 2,
+  weight: 1480,
+});
 // results in error: color was not defined
 ```
 
@@ -40,13 +55,13 @@ Using static class methods makes it easier to understand what we're building, by
 // Using Fluent Builder pattern
 // Great if the implementation will not be repeated many times
 const sportsCar = new CarBuilder()
-                    .setBrand('Ferrari')
-                    .setModel('Enzo')
-                    .setColor('red')
-                    .setEngine({type: 'v12', volume: 6000, hp: 651})
-                    .setDoors(2)
-                    .setWeight(1480)
-                    .getCar()
+  .setBrand('Ferrari')
+  .setModel('Enzo')
+  .setColor('red')
+  .setEngine({ type: 'v12', volume: 6000, hp: 651 })
+  .setDoors(2)
+  .setWeight(1480)
+  .getCar();
 ```
 
 #### Concrete builders and directors
@@ -62,10 +77,10 @@ const carBuilder = new FerrariBuilder();
 const carDirector = new Director(carBuilder);
 
 carDirector.buildCabriolet();
-carBuilder.getProduct() // Returns a Ferrari object with no roof
+carBuilder.getProduct(); // Returns a Ferrari object with no roof
 
 carDirector.buildFullCar();
-carBuilder.getProduct() // Returns a Ferrari object with roof
+carBuilder.getProduct(); // Returns a Ferrari object with roof
 ```
 
 ## Code examples
@@ -74,35 +89,34 @@ carBuilder.getProduct() // Returns a Ferrari object with roof
 
 ```ts
 class CarBuilder {
-    private brand: string;
-    private model: string;
-    private engine: Engine;
-    private color: Color;
+  private brand: string;
+  private model: string;
+  private engine: Engine;
+  private color: Color;
 
-    constructor() {
-        this.element = new Car();
-    }
+  constructor() {
+    this.element = new Car();
+  }
 
-    public setBrand(brand: string): Car {
-        this.brand = brand;
-        return this;
-    }
+  public setBrand(brand: string): Car {
+    this.brand = brand;
+    return this;
+  }
 
-    public setEngine(engine: Engine): Car {
-        this.engine = engine;
-        return this;
-    }
+  public setEngine(engine: Engine): Car {
+    this.engine = engine;
+    return this;
+  }
 
-    public setColor(color: Color): Car {
-        this.color = color;
-        return this;
-    }
+  public setColor(color: Color): Car {
+    this.color = color;
+    return this;
+  }
 
-    public getProduct(): Car {
-        return new Car(this)
-    }
+  public getProduct(): Car {
+    return new Car(this);
+  }
 }
-
 ```
 
 ### Concrete builder + Director
@@ -153,24 +167,24 @@ class FerrariBuilder implements Builder {
 
 ```ts
 class CarDirector {
-    private builder: Builder;
+  private builder: Builder;
 
-    constructor(builder: Builder) {
-        this.builder = builder;
-    }
+  constructor(builder: Builder) {
+    this.builder = builder;
+  }
 
-    public buildCabriolet():Car {
-        this.builder.addChassis()
-        this.builder.addDoors();
-        this.builder.addEngine();
-    }
+  public buildCabriolet(): Car {
+    this.builder.addChassis();
+    this.builder.addDoors();
+    this.builder.addEngine();
+  }
 
-    public buildFullCar():Car {
-        this.builder.addChassis()
-        this.builder.addDoors();
-        this.builder.addEngine();
-        this.builder.addRoof();
-    }
+  public buildFullCar(): Car {
+    this.builder.addChassis();
+    this.builder.addDoors();
+    this.builder.addEngine();
+    this.builder.addRoof();
+  }
 }
 ```
 
