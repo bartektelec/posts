@@ -3,6 +3,7 @@ title: 'TypeScript Builder Pattern'
 excerpt: 'Complex class entities may get difficult to produce using only constructor arguments, providing more options for customization makes the constructor cluttered and difficult to read...'
 coverImage: '/assets/builder.jpg'
 date: 'Tue 20 Oct, 2020'
+tags: 'typescript, design patterns, creational'
 
 ogImage:
   url: '/assets/builder.jpg'
