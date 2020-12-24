@@ -1,15 +1,13 @@
 ---
-title: 'TypeScript Builder Pattern'
-excerpt: 'Complex class entities may get difficult to produce using only constructor arguments, providing more options for customization makes the constructor cluttered and difficult to read...'
-coverImage: '/assets/builder.jpg'
-date: 'Tue 20 Oct, 2020'
-tags: 'typescript, design patterns, creational'
+title: "TypeScript Builder Pattern"
+excerpt: "Complex class entities may get difficult to produce using only constructor arguments, providing more options for customization makes the constructor cluttered and difficult to read..."
+coverImage: "/assets/builder.jpg"
+date: "Tue 20 Oct, 2020"
+tags: "typescript, design patterns, creational"
 
 ogImage:
-  url: '/assets/builder.jpg'
+  url: "/assets/builder.jpg"
 ---
-
-_typescript, design patterns, creational_
 
 ## Intro
 
@@ -17,25 +15,18 @@ Builder is a creational pattern, that helps us avoid creating complex class cons
 
 ## Problem
 
+![Confused builder](https://media.giphy.com/media/VIJxPwIvOsmL4XTikd/giphy-downsized.gif)
+
 Complex class entities may get difficult to produce using only constructor arguments, providing more options for customization makes the constructor cluttered and difficult to read.
 
 ```ts
 // Creating a red Enzo Ferrari with v12 6L engine, 2 doors, 1480kg weight and 651hp
-const sportsCar = new Car('Ferrari', 'Enzo', 'red', 'v12', 6000, 651, 2, 1480);
+const sportsCar = new Car("Ferrari", "Enzo", "red", "v12", 6000, 651, 2, 1480);
 // or
 const sportsCar = new Car({
-  brand: 'Ferrari',
-  model: 'Enzo',
-  color: 'red',
-  engine: { type: 'v12', volume: 6000, hp: 651 },
-  doors: 2,
-  weight: 1480,
-});
-// or
-const sportsCar = new Car({
-  brand: 'Ferrari',
-  model: 'Enzo',
-  engine: { type: 'v12', volume: 6000, hp: 651 },
+  brand: "Ferrari",
+  model: "Enzo",
+  engine: { type: "v12", volume: 6000, hp: 651 },
   doors: 2,
   weight: 1480,
 });
@@ -46,22 +37,26 @@ const sportsCar = new Car({
 
 #### Fluent
 
+![man rolling a long list](https://media.giphy.com/media/F0QWePzwQRewM/giphy.gif)
+
 Using static class methods makes it easier to understand what we're building, by doing it step-by-step. It is like reading a blueprint.
 
 ```ts
 // Using Fluent Builder pattern
 // Great if the implementation will not be repeated many times
 const sportsCar = new CarBuilder()
-  .setBrand('Ferrari')
-  .setModel('Enzo')
-  .setColor('red')
-  .setEngine({ type: 'v12', volume: 6000, hp: 651 })
+  .setBrand("Ferrari")
+  .setModel("Enzo")
+  .setColor("red")
+  .setEngine({ type: "v12", volume: 6000, hp: 651 })
   .setDoors(2)
   .setWeight(1480)
   .getCar();
 ```
 
 #### Concrete builders and directors
+
+![Im doing my part animation](https://media.giphy.com/media/7T2R1eAIKnEJnAf5U8/giphy.gif)
 
 Builder can be served as a complete blueprint aka. `Concrete Builder`, these classes are supposed to provide their own methods for creating parts of the instance and can be based on a Fluent Builder Pattern.
 
