@@ -1,12 +1,12 @@
 ---
-title: 'Case study: Lameflix'
-excerpt: 'After going through two Udemy courses on React I decided to start my own project from scratch...'
-coverImage: 'https://github.com/bartektelec/react-netflix-clone/blob/master/screenshot.jpg?raw=true'
-date: 'Thu 24 Dec, 2020'
-tags: 'project, react, case study'
+title: "Lameflix - my first React project"
+excerpt: "After going through two Udemy courses on React I decided to start my own project from scratch..."
+coverImage: "https://github.com/bartektelec/react-netflix-clone/blob/master/screenshot.jpg?raw=true"
+date: "Thu 24 Dec, 2020"
+tags: "project, react, case study"
 
 ogImage:
-  url: 'https://github.com/bartektelec/react-netflix-clone/blob/master/screenshot.jpg?raw=true'
+  url: "https://github.com/bartektelec/react-netflix-clone/blob/master/screenshot.jpg?raw=true"
 ---
 
 ## Intro
@@ -19,12 +19,14 @@ You can view the live result [here.](https://bartektelec.github.io/react-netflix
 
 ## Video courses are overrated
 
+![Animation of child falling when skiing fast](https://media.giphy.com/media/74u3n5M7SJx7O/giphy-downsized.gif)
 I wrapped the word "learning" in quotes for a reason - now, after some time has passed I no longer believe in online courses (like the ones found on Udemy) to be a way of "learning", at least not for myself. I've done multiple courses on the platform before and it always ends up with me just watching the videos and not being able to use the _knowledge_ later. This **passive** way of learning is not right when learning something technical, that's why from now on I decided on learning stuff on my own, by actually doing a project from start to finish, and reading the docs when I am stuck. I find this way of learning to be much more effective, because in the end it's our practical abilities that matter.
 
 ## Confusion
 
 The thing is, working with library such as React differs a lot from the workflow we're used to when working with plain HTML and JavaScript.
 From now on the whole workflow was based on reactive properties (states), props, life-cycle methods and context.
+![animation of confused man](https://media.giphy.com/media/toB3AnUDkqE3GENKx0/giphy-downsized.gif)
 It was just a lot to process, and like always I barely could code a simple To-Do app after going through those courses.
 
 ## Project
@@ -41,12 +43,15 @@ I used styled-components, as a CSS-in-JS styling library, which I still find gre
 
 I remember when I found out I was passing my props multiple levels down the React component tree and I knew I had to use some kind of global state. The problem was I had no idea how Redux or Context works. It obviously took some time to figure it out but I managed to solve it with the gorgeous `useContext` hook.
 Yes, I used hooks for my project, even though most of the stuff I've learned from the video courses was Class-component based, there was just a short mention about hooks. I always like to learn from challenging myself, and that's also how I learned to use hooks, which I now find a much cleaner way of managing state in components.
+![animation of man finding out where smell comes from](https://media.giphy.com/media/yoJC2ybBpQifyekSyI/giphy.gif)
 
 ## Improvements
 
 I later improved some of the code, mostly using optimization techniques I've learned since.
 When I coded the app in the first place I had no idea about the good and bad practices in React. I guess it's both a blessing and a curse that React gives us so much freedom to do stuff the way we want.
 Wrapping my asynchronous API calls in a useEffect hook prevents the app from sending a request everytime the component rerenders.
+
+![animation of man fixing his shoe with a tape](https://media.giphy.com/media/26ufiCwqYx1HetWfu/giphy.gif)
 
 Wrapping my event handlers in a useCallback should increase the app's performance.
 I was planning on using PropTypes library for static typing of component props, but since then I've learned to use TypeScript so I might as well rewrite the whole app in TypeScript instead.
