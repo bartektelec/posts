@@ -1,5 +1,5 @@
 ---
-title: "Shuuz - my first Vue project"
+title: "Shuuz - e-commerce site in Vue"
 excerpt: "Being given a task of creating a small e-commerce website I wanted to raise the bar a little..."
 coverImage: "https://github.com/bartektelec/shuuz-client/raw/master/screenshot.jpg"
 date: "Fri 25 Dec, 2020"
