@@ -45,6 +45,35 @@ This would also allow us to handle invalid API responses in the runtime and hand
 
 ## Moving forward
 
+I have spent last week on reading about different architecture approaches - Layered, Hexagonal, Onion etc.
+Most of these architectures have a lot in common, but they are usually well described in context of building a backend and some parts simply can't be transcribed to frontend directly.
+
+No matter which architecture mentioned above you pick, you will find they usually focus on having a Domain layer as a base, this layer usually consists of entity definitions and code that describes the business rules using the same language as the domain experts in your business would use.
+Sometimes this layer is wrapped in some kind of repository pattern or splits the domain into model and services.
+
+Next, usually you will either have one or more layers related to Application services or use cases, that are simply pieces of logic that we need to apply on top of the domain layer to be able to structure your procedures. 
+
+Other layers will usually be some kind of ports and adapters that form a Infrastructure layer that can be split up into Gateways, Controllers and Presenters that are supposed to serve the UI, Devices, DB and generally the outside world.
+
+## Frontend duties
+
+What tasks do we perform on the frontend?
+Well, obviously frontend and backend do completely different jobs, and even if in theory the backend should take care of most domain related logic it sometimes can't.
+
+Most frontend applications would do just fine as an interface to the backend - we create a form, maybe validate it and then send it to the backend to do the rest for us.
+
+The truth is that it's almost never as simple as that, because if it was we would not need all these JavaScript frameworks that we rely on nowadays.
+Our goal is to serve the end user and provide them with a stable, snappy user experience - and there is nothing as annoying as a poor frontend that crashes without a reason. Say what you want, but if the API takes 2 seconds to respond or it throws a 500 in my face I will be fine. However if my frontend crashes and I lose all my unsaved data because somewhere in the code there was an unhandled null and I can't do my job because of that? Oh boy that grinds my gears.
+
+Looking at the folder structure I added above, a basic frontend app would take care of multiple state values for improving the user experience - is the page loading, are we seeing an error, light mode, dark mode, keyboard navigations, modals, dropdown, tooltips, preferences, quick access menus. Additionally an app is usually a stitch of commonly used components like dropdowns and modals, as well as feature and page specific components like fligh seat selection component. 
+
+If an application consists of many features it should be split up using these, if it doesn't then maybe it shouldn't.
+
+We also have some form of connection to the outer world - REST API, WebSockets and also storage like cookies and localStorage.
+And in case we need to program some business related logic we should be speaking the domain language.
+
+
+
 // draft
 // design oriented on features and domain needs
 // dep incjection for maintainability
