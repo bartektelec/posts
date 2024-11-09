@@ -2,6 +2,8 @@
 
 Installed k3s
 
+All kubernetes components are created with `--dry-run=client -o yaml > file_name.yaml` so they can easily be edited and reapplied.
+
 - Create a kube deployment with homeassistant image
 ```
 kubectl create deploy home-assistant-deploy --image=docker.io/homeassistant/home-assistant:stable --http-port=8123 --dry-run=client -o yaml > ha-deploy.yaml
