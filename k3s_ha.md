@@ -69,7 +69,7 @@ securityContext:
   privileged: true
 ```
 
-and also it will need volumeMounts
+and also it will need persistant volumes so the settings won't get lost after restart
 ```
 volumeMounts:
   - name: zigbee2mqtt-data
@@ -81,7 +81,6 @@ volumeMounts:
 
 ```
 
-and we need to define the volumes
 ```
 volumes:
   - name: zigbee2mqtt-data
@@ -95,7 +94,7 @@ volumes:
       path: /dev/ttyACM0
 ```
 
-the zigbee2mqtt-data volume uses a persistentVolumeClaim that will need to be defined
+persistant volumes need a separate PVC yaml declaration:
 ```
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -224,32 +223,4 @@ spec:
     app: mosquitto
   ports:
   - port: 9001
-```
-
-Ingress:
-```
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: mosquitto
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt
-spec:
-  tls:
-  - hosts:
-    - mqtt.example.com
-    secretName: mosquitto-certs
-  rules:
-  - host: mqtt.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: mosquitto-ws
-            port: 
-              number: 8883
-
 ```
