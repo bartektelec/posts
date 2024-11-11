@@ -34,6 +34,8 @@ kubectl apply -f ha-svc.yaml
 ```
 we should have the 8123 port exposed and can fire up the browser and proceed to `http://{cluster_ip_addr}:8123` where we will find a getting started wizard for home-assistant
 
+I then added HACS to access some community made plugins, but then problems started occuring, I would get a `Config flow could not be loaded: {"message":"Invalid handler specified"}`error when installing some HACS extensions, and after approx. 2 hours of googling I found this issue https://github.com/home-assistant/core/issues/127966. Apparently some recent versions of home-assistant cause trouble for python modules to pick up the right deps directory so a rather easy fix was needed: set "PYTHONPATH" env in the home assistant deploy to "/config/deps"
+
 ## Zigbee2MQTT
 
 There are several ways to control zigbee devices with HA, I previously installed deCONZ, but it needed me to discover new devices using a separate Web UI that I could only use directly from the device and wasn't exposed to rest of my local network - probably something I was doing wrong IDK. It also imported my devices but they never updated, that issue is mentioned in the docs and has somehting to do with how WebSockets are setup with the deCONZ app.
